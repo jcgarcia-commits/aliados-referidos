@@ -1,0 +1,70 @@
+<div class="overflow-x-auto mt-4">
+  <!-- Tabla -->
+  <table class="min-w-full border border-gray-300">
+    <thead class="bg-gray-50">
+      <tr>
+        <th
+          class="text-center px-4 py-2 border-b border-gray-300 text-sm font-semibold text-gray-700"
+        >
+          #
+        </th>
+        <th
+          class="text-left px-4 py-2 border-b border-gray-300 text-sm font-semibold text-gray-700"
+        >
+          Banco
+        </th>
+        <th
+          class="text-left px-4 py-2 border-b border-gray-300 text-sm font-semibold text-gray-700"
+        >
+          Cuenta
+        </th>
+        <th
+          class="text-center px-4 py-2 border-b border-gray-300 text-sm font-semibold text-gray-700"
+        >
+          Nombre de la Cuenta
+        </th>
+        <th
+          class="text-center px-4 py-2 border-b border-gray-300 text-sm font-semibold text-gray-700"
+        >
+          Asignado
+        </th>
+      </tr>
+    </thead>
+    <tbody class="text-[0.85em]">
+      @for (item of empresasList(); track item.empresaId; let i = $index) {
+      <tr class="hover:bg-gray-50 border-b border-gray-200">
+        <td class="px-4 py-2 text-center">{{ i + 1 }}</td>
+        <td class="px-4 py-2">{{ item.nombre }}</td>
+        <td class="px-4 py-2">{{ item.direccion }}</td>
+        <td class="px-4 py-2">{{ item.nit }}</td>
+        <td class="text-center">
+          <div class="flex justify-center items-center">
+            <input
+              type="checkbox"
+              class="w-5 h-5 border-blue-500 rounded focus:ring-0"
+              [checked]="seleccionado === i"
+              (change)="seleccionar(i)"
+            />
+          </div>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
+<!-- Botones -->
+<div class="mt-6 flex justify-end gap-2">
+  <button
+    type="button"
+    class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded transition-colors"
+    onclick="document.getElementById('empresaForm').reset();"
+  >
+    Cancelar
+  </button>
+  <button
+    type="submit"
+    class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition-colors"
+  >
+    Guardar
+  </button>
+</div>

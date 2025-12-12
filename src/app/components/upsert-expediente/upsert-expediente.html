@@ -1,0 +1,63 @@
+<form action="#">
+  <div class="fixed top-4 right-4 space-y-2 z-50" id="toast-container"></div>
+
+  <div class="grid gap-4 gap-x-12 mb-4 sm:grid-cols-2">
+    <!-- Columna izquierda -->
+    <div class="flex flex-col">
+      <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+        Observaciones
+      </label>
+
+      <textarea
+        name="observaciones"
+        id="observaciones"
+        rows="4"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Observaciones"
+      ></textarea>
+    </div>
+
+    <!-- Columna derecha: dos botones -->
+    <div class="flex flex-col gap-4">
+      <div>
+        <input type="file" class="hidden" />
+
+        <button
+          type="button"
+          class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition-colors w-full"
+          (click)="generarDocumento()"
+        >
+          Generar Documento
+        </button>
+      </div>
+
+      <div>
+        <input type="file" #fileInput class="hidden" (change)="archivoSeleccionado($event)" />
+
+        <button
+          type="button"
+          class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition-colors w-full"
+          (click)="fileInput.click()"
+        >
+          Cargar Documento
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex justify-between gap-2">
+    <button
+      type="button"
+      class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded transition-colors"
+      onclick="document.getElementById('empresaForm').reset();"
+    >
+      Cancelar
+    </button>
+    <button
+      type="submit"
+      class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition-colors"
+    >
+      Guardar
+    </button>
+  </div>
+</form>

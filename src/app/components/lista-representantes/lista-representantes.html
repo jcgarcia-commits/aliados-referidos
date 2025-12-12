@@ -1,0 +1,157 @@
+<!-- CONTENEDOR DE TOASTS -->
+<div id="toast-container" class="fixed top-4 right-4 space-y-2 z-[9999]"></div>
+
+<!-- Contenedor en una sola fila -->
+<div class="bg-white">
+  <div class="flex items-center justify-between w-full px-2 py-2">
+    <!-- Radios alineados horizontalmente -->
+    <div class="flex items-center gap-6">
+      <label class="flex items-center gap-2 bg-neutral-primary-soft px-2 py-1 rounded">
+        <input
+          type="radio"
+          name="searchMode"
+          value="nombre"
+          [(ngModel)]="searchMode"
+          class="w-4 h-4"
+        />
+        <span class="select-none text-sm font-medium text-heading">Buscar por nombre</span>
+      </label>
+
+      <label class="flex items-center gap-2 bg-neutral-primary-soft px-2 py-1 rounded">
+        <input
+          type="radio"
+          name="searchMode"
+          value="documento"
+          [(ngModel)]="searchMode"
+          class="w-4 h-4"
+        />
+        <span class="select-none text-sm font-medium text-heading">
+          Buscar por número de documento
+        </span>
+      </label>
+    </div>
+  </div>
+
+  <div class="p-6">
+    <form class="flex flex-wrap items-end gap-4">
+      <!-- MODO NOMBRE -->
+      <div [class.hidden]="searchMode !== 'nombre'" class="flex-1 min-w-[250px]">
+        <label class="block mb-2 text-sm font-medium text-gray-900">Nombres y Apellidos</label>
+        <input
+          type="text"
+          id="txtBuscar"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Nombre y Apellidos"
+          #txtBuscar
+          (input)="buscador.set(txtBuscar.value)"
+          (keyup.enter)="fetchData()"
+        />
+      </div>
+
+      <!-- MODO DOCUMENTO -->
+      <div
+        [class.hidden]="searchMode !== 'documento'"
+        class="flex items-end gap-4 flex-1 min-w-[300px]"
+      >
+        <!-- Tipo Documento -->
+        <div class="flex-1 min-w-[150px]">
+          <label class="block mb-2 text-sm font-medium text-gray-900">Tipo Documento</label>
+          <select
+            id="tipo"
+            name="tipo"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 w-full p-2.5"
+          >
+            <option value="">Seleccione un tipo</option>
+            <option value="dpi">DPI</option>
+            <option value="nit">NIT</option>
+          </select>
+        </div>
+
+        <!-- Documento -->
+        <div class="flex-1 min-w-[200px]">
+          <label class="block mb-2 text-sm font-medium text-gray-900">Documento</label>
+          <input
+            type="number"
+            id="documento"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 w-full p-2.5"
+          />
+        </div>
+
+        <!-- BOTÓN -->
+        <div class="flex-none">
+          <button
+            type="button"
+            (click)="fetchData()"
+            class="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded transition-colors"
+          >
+            Buscar
+          </button>
+        </div>
+      </div>
+
+      <!-- BOTÓN para MODO NOMBRE -->
+      <div [class.hidden]="searchMode !== 'nombre'" class="flex-none">
+        <button
+          type="button"
+          (click)="fetchData()"
+          class="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded transition-colors"
+        >
+          Buscar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- TABLA RESULTADOS -->
+<div class="overflow-x-auto mt-4">
+  <table class="min-w-full border border-gray-300">
+    <thead class="bg-gray-50">
+      <tr>
+        <th
+          class="text-center px-4 py-2 border-b border-gray-300 text-sm font-semibold text-gray-700"
+        >
+          #
+        </th>
+        <th
+          class="text-left px-4 py-2 border-b border-gray-300 text-sm font-semibold text-gray-700"
+        >
+          Nombre
+        </th>
+        <th
+          class="text-left px-4 py-2 border-b border-gray-300 text-sm font-semibold text-gray-700"
+        >
+          Documento
+        </th>
+        <th
+          class="text-left px-4 py-2 border-b border-gray-300 text-sm font-semibold text-gray-700"
+        >
+          Tipo
+        </th>
+        <th
+          class="text-center px-4 py-2 border-b border-gray-300 text-sm font-semibold text-gray-700"
+        >
+          Acciones
+        </th>
+      </tr>
+    </thead>
+    <tbody class="text-[0.85em]">
+      @for (item of empresasList(); track item.empresaId; let i = $index) {
+      <tr class="hover:bg-gray-50 border-b border-gray-200">
+        <td class="px-4 py-2 text-center">{{ i + 1 }}</td>
+        <td class="px-4 py-2">{{ item.nombre }}</td>
+        <td class="px-4 py-2">{{ item.direccion }}</td>
+        <td class="px-4 py-2">{{ item.nit }}</td>
+        <td class="px-4 py-2 text-center flex justify-center gap-2">
+          <button
+            class="w-8 h-8 bg-green-600 hover:bg-green-800 text-white rounded transition-colors flex items-center justify-center"
+            (click)="mostrarToastYcerrar()"
+          >
+            <lucide-icon [img]="FileBadge" [size]="16" [strokeWidth]="1"></lucide-icon>
+          </button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>

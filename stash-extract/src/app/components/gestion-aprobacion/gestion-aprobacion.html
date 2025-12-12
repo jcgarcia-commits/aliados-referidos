@@ -1,0 +1,98 @@
+<span class="font-semibold text-gray-700">Aprobación de Solicitudes</span>
+<div class="grid gap-4 mb-4 sm:grid-cols-2">
+  <div>
+    <label for="bordered-radio-2" class="py-1 select-none ms-2 text-sm font-medium text-heading">
+      Paola Citán
+    </label>
+  </div>
+
+  <div>
+    <label for="bordered-radio-2" class="py-1 select-none ms-2 text-sm font-medium text-heading">
+      Librería Milenium
+    </label>
+  </div>
+</div>
+
+<div class="overflow-x-auto mt-4">
+  <!-- Tabla -->
+  <table class="min-w-full border border-gray-300">
+    <thead class="bg-gray-50">
+      <tr>
+        <th
+          class="text-center px-4 py-2 border-b border-gray-300 text-sm font-semibold text-gray-700"
+        >
+          #
+        </th>
+        <th
+          class="text-left px-4 py-2 border-b border-gray-300 text-sm font-semibold text-gray-700"
+        >
+          Tipo afiliación
+        </th>
+        <th
+          class="text-left px-4 py-2 border-b border-gray-300 text-sm font-semibold text-gray-700"
+        >
+          Tipo solicitud
+        </th>
+        <th
+          class="text-left px-4 py-2 border-b border-gray-300 text-sm font-semibold text-gray-700"
+        >
+          Estado
+        </th>
+        <th
+          class="text-center px-4 py-2 border-b border-gray-300 text-sm font-semibold text-gray-700"
+        >
+          Acciones
+        </th>
+      </tr>
+    </thead>
+    <tbody class="text-[0.85em]">
+      @for (item of empresasList(); track item.empresaId; let i = $index) {
+      <tr class="hover:bg-gray-50 border-b border-gray-200">
+        <td class="px-4 py-2 text-center">{{ i + 1 }}</td>
+        <td class="px-4 py-2">{{ item.nombre }}</td>
+        <td class="px-4 py-2">{{ item.direccion }}</td>
+        <td class="px-4 py-2">{{ item.nit }}</td>
+        <td class="px-4 py-2 text-center flex justify-center gap-2">
+          <!-- Edit button -->
+          <button
+            class="w-8 h-8 bg-blue-600 hover:bg-blue-800 text-white rounded transition-colors flex items-center justify-center"
+            (click)="openModal(1)"
+          >
+            <lucide-icon [img]="UserRoundCheck" [size]="16" [strokeWidth]="1"></lucide-icon>
+          </button>
+
+          <!-- Delete button -->
+          <button
+            class="w-8 h-8 bg-orange-600 hover:bg-orange-800 text-white rounded transition-colors flex items-center justify-center"
+            (click)="openModal(2)"
+          >
+            <lucide-icon [img]="ScanSearch" [size]="16" [strokeWidth]="1"></lucide-icon>
+          </button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+<div
+  class="fixed inset-0 bg-black/50 flex items-center justify-center"
+  *ngIf="modal1"
+  (click)="closeModal()"
+>
+  <div class="bg-white p-6 rounded-xl shadow-lg" (click)="$event.stopPropagation()">
+    <button (click)="closeModal()" class="float-right">✕</button>
+    <app-validacion-accordion></app-validacion-accordion>
+  </div>
+</div>
+
+<div
+  class="fixed inset-0 bg-black/50 flex items-center justify-center"
+  *ngIf="modal2"
+  (click)="closeModal()"
+>
+  <div class="bg-white p-6 rounded-xl shadow-lg" (click)="$event.stopPropagation()">
+    <button (click)="closeModal()" class="float-right">✕</button>
+    <app-upsert-solicitud-consulta></app-upsert-solicitud-consulta>
+  </div>
+</div>

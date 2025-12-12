@@ -1,0 +1,190 @@
+<form action="#">
+  <div class="mt-1 grid gap-4 mb-4 sm:grid-cols-4">
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1" for="tipo"
+        >Código Domicilio (*)</label
+      >
+      <select
+        id="tipo"
+        name="tipo"
+        class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+      >
+        <option value="">Código Domicilio</option>
+        <option value="publica">Vivienda</option>
+        <option value="privada">Fiscal/PERS. JURÍDICA</option>
+        <option value="publica">Correspondencia/PJ</option>
+        <option value="privada">Relación de Depend.</option>
+        <option value="privada">Negocio Propio/PI</option>
+      </select>
+    </div>
+
+    <div>
+      <label
+        for="email"
+        class="ml-auto block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >¿Casa y negocio? (*)</label
+      >
+
+      <select
+        id="tipo"
+        name="tipo"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      >
+        <option value="publica">Sí</option>
+        <option value="publica">No</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >Ubicación desde (*)
+      </label>
+      <div class="relative max-w-sm">
+        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+          <svg
+            class="w-4 h-4 text-body"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 10h16m-8-3V4M7 7V4m10 3V4M5 20h14a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Zm3-7h.01v.01H8V13Zm4 0h.01v.01H12V13Zm4 0h.01v.01H16V13Zm-8 4h.01v.01H8V17Zm4 0h.01v.01H12V17Zm4 0h.01v.01H16V17Z"
+            />
+          </svg>
+        </div>
+        <input
+          id="datepicker-autohide-a"
+          datepicker
+          datepicker-autohide
+          type="text"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Select date"
+        />
+      </div>
+    </div>
+
+    <div>
+      <label
+        for="email"
+        class="ml-auto block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >Tipo vivienda (*)</label
+      >
+
+      <select
+        id="tipo"
+        name="tipo"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      >
+        <option value="">Tipo vivienda</option>
+        <option value="publica">PROPIA</option>
+        <option value="publica">FAMILIAR</option>
+        <option value="publica">ARRENDADA</option>
+        <option value="publica">Otros</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mt-1 grid gap-4 mb-4 sm:grid-cols-3">
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1" for="nombre">Calle</label>
+      <input
+        id="nombre"
+        name="nombre"
+        type="text"
+        class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        placeholder="Núm Calle/Avenida"
+        required
+        minlength="3"
+      />
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1" for="nombre">Casa</label>
+      <input
+        id="nombre"
+        name="nombre"
+        type="text"
+        class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        placeholder="Núm casa"
+        required
+        minlength="3"
+      />
+    </div>
+
+    <div>
+      <label for="email" class="ml-auto block text-sm font-medium text-gray-900 dark:text-white"
+        >Zona</label
+      >
+
+      <select
+        id="tipo"
+        name="tipo"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      >
+        <option value="">Zona</option>
+        <option value="publica">Zona 1</option>
+        <option value="publica">Zona 2</option>
+        <option value="publica">Zona 3</option>
+        <option value="publica">Zona 4</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mt-1 grid gap-4 mb-4 sm:grid-cols-3">
+    <div>
+      <label for="email" class="ml-auto block text-sm font-medium text-gray-900 dark:text-white"
+        >Departamento (*)</label
+      >
+
+      <select
+        id="tipo"
+        name="tipo"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      >
+        <option value="">Departamento</option>
+        <option value="publica">Chimaltenango</option>
+        <option value="publica">Sacatepéquez</option>
+        <option value="publica">Escuintla</option>
+        <option value="publica">Cobán</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="email" class="ml-auto block text-sm font-medium text-gray-900 dark:text-white"
+        >Municipio (*)</label
+      >
+
+      <select
+        id="tipo"
+        name="tipo"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      >
+        <option value="">Municipio</option>
+        <option value="publica">Chimaltenango</option>
+        <option value="publica">Tecpán</option>
+        <option value="publica">Parramos</option>
+        <option value="publica">Acatenango</option>
+      </select>
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1" for="nombre">Referencia</label>
+      <input
+        id="nombre"
+        name="nombre"
+        type="text"
+        class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        placeholder="Referencia"
+        required
+        minlength="3"
+      />
+    </div>
+  </div>
+</form>

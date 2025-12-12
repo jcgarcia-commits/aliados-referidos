@@ -1,0 +1,75 @@
+<form>
+  <!-- Fila 1: Tipo de Afiliación y Tipo solicitud -->
+  <div class="grid gap-4 mb-4 sm:grid-cols-2">
+    <div class="flex flex-col">
+      <label class="text-sm font-medium text-gray-700 mb-1" for="tipo-afiliacion"
+        >Tipo de Afiliación</label
+      >
+      <select
+        id="tipo-afiliacion"
+        name="tipo-afiliacion"
+        class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+      >
+        <option value="">Seleccione tipo afiliación</option>
+        <option value="publica">Red de referidos</option>
+      </select>
+    </div>
+
+    <div class="flex flex-col">
+      <label class="text-sm font-medium text-gray-700 mb-1" for="tipo-solicitud"
+        >Tipo solicitud</label
+      >
+      <select
+        id="tipo-solicitud"
+        name="tipo-solicitud"
+        class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+      >
+        <option value="">Seleccione tipo solicitud</option>
+        <option value="publica">Afiliación</option>
+        <option value="privada">Actualización de cuenta bancaria</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Fila 2: Fecha solicitud y Estado de la solicitud -->
+  <div class="grid gap-4 mb-4 sm:grid-cols-2 items-end">
+    <!-- Fecha solicitud -->
+    <div class="flex flex-col relative max-w-sm">
+      <label class="text-sm font-medium text-gray-700 mb-1" for="fecha-solicitud"
+        >Fecha solicitud</label
+      >
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+          <svg
+            class="w-4 h-4 text-gray-500"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a1 1 0 001-1V7a1 1 0 00-1-1H5a1 1 0 00-1 1v13a1 1 0 001 1z"
+            />
+          </svg>
+        </div>
+        <input
+          id="fecha-solicitud"
+          datepicker
+          datepicker-autohide
+          type="text"
+          placeholder="Select date"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full pl-10 p-2.5 focus:ring-blue-500 focus:border-blue-500"
+        />
+      </div>
+    </div>
+
+    <!-- Estado de la solicitud -->
+    <div class="flex flex-col">
+      <label class="text-sm font-medium text-gray-700 mb-1">Estado de la solicitud</label>
+      <span class="text-red-600 font-semibold">Pendiente de aprobación</span>
+    </div>
+  </div>
+</form>

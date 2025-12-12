@@ -1,0 +1,81 @@
+<form id="empresaForm" class="max-w-xl mx-auto p-4 bg-white rounded-md shadow-md space-y-4">
+  <div>
+    <button
+      type="button"
+      class="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition-colors"
+      (click)="openModal(1)"
+    >
+      Ver datos de la empresa
+    </button>
+  </div>
+
+  <div>
+    <button
+      type="button"
+      class="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition-colors"
+      (click)="openModal(2)"
+    >
+      Ver datos del Representante
+    </button>
+  </div>
+
+  <div>
+    <button
+      type="button"
+      class="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition-colors"
+      (click)="openModal(3)"
+    >
+      Ver datos de la cuenta bancaria
+    </button>
+  </div>
+
+  <div>
+    <button
+      type="button"
+      (click)="verDocumento()"
+      class="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition-colors"
+    >
+      Ver términos y condiciones
+    </button>
+  </div>
+</form>
+
+<div
+  class="fixed inset-0 bg-black/50 flex items-center justify-center"
+  *ngIf="modal1"
+  (click)="closeModal()"
+>
+  <div class="bg-white p-6 rounded-xl shadow-lg" (click)="$event.stopPropagation()">
+    <button (click)="closeModal()" class="float-right">✕</button>
+    <app-empresa-accordion></app-empresa-accordion>
+  </div>
+</div>
+
+<div
+  *ngIf="modal2"
+  (click)="closeModal()"
+  class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50"
+>
+  <div class="bg-white rounded-xl shadow-xl w-[600px] p-6 relative">
+    <!-- Botón cerrar -->
+    <button class="absolute top-3 right-3 text-gray-600 hover:text-black" (click)="closeModal()">
+      ✕
+    </button>
+
+    <!-- AQUÍ SE INSERTA TU COMPONENTE 
+    <app-hover-accordion></app-hover-accordion> -->
+
+    <app-gestion-representante-accordion></app-gestion-representante-accordion>
+  </div>
+</div>
+
+<div
+  class="fixed inset-0 bg-black/50 flex items-center justify-center"
+  *ngIf="modal3"
+  (click)="closeModal()"
+>
+  <div class="bg-white p-6 rounded-xl shadow-lg" (click)="$event.stopPropagation()">
+    <button (click)="closeModal()" class="float-right">✕</button>
+    <app-upsert-asigna-cuenta></app-upsert-asigna-cuenta>
+  </div>
+</div>

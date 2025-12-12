@@ -1,0 +1,309 @@
+<div class="w-full max-w-6xl mx-auto space-y-2">
+  <!-- Documentos de Identificación y Archivos -->
+  <div
+    class="border border-gray-300 rounded-lg overflow-hidden bg-white shadow-sm hover:shadow-md transition-all duration-300"
+    (mouseenter)="onMouseEnter('documentos')"
+    (mouseleave)="onMouseLeave()"
+  >
+    <div
+      class="px-6 py-4 cursor-pointer flex items-center justify-between transition-colors duration-200"
+      [class.bg-blue-50]="activeSection() === 'documentos'"
+      [class.bg-white]="activeSection() !== 'documentos'"
+    >
+      <div class="flex items-center gap-3">
+        <svg
+          class="w-6 h-6"
+          [class.text-blue-600]="activeSection() === 'documentos'"
+          [class.text-gray-500]="activeSection() !== 'documentos'"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+          ></path>
+        </svg>
+        <h3
+          class="text-lg font-semibold transition-colors duration-200"
+          [class.text-blue-700]="activeSection() === 'documentos'"
+          [class.text-gray-800]="activeSection() !== 'documentos'"
+        >
+          Documento de Identificación
+        </h3>
+      </div>
+
+      <svg
+        class="w-5 h-5 transition-transform duration-300 ease-in-out"
+        [class.rotate-180]="activeSection() === 'documentos'"
+        [class.text-blue-600]="activeSection() === 'documentos'"
+        [class.text-gray-400]="activeSection() !== 'documentos'"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M19 9l-7 7-7-7"
+        ></path>
+      </svg>
+    </div>
+
+    <div
+      class="overflow-hidden transition-all duration-500 ease-in-out"
+      [style.max-height]="activeSection() === 'documentos' ? '1000px' : '0px'"
+      [style.opacity]="activeSection() === 'documentos' ? '1' : '0'"
+    >
+      <div class="px-6 py-4 bg-gray-50 border-t border-gray-200">
+        <app-upsert-documentos-archivos></app-upsert-documentos-archivos>
+      </div>
+    </div>
+  </div>
+
+  <!-- Datos Personales y Demográficos -->
+  <div
+    class="border border-gray-300 rounded-lg overflow-hidden bg-white shadow-sm hover:shadow-md transition-all duration-300"
+    (mouseenter)="onMouseEnter('datos')"
+    (mouseleave)="onMouseLeave()"
+  >
+    <div
+      class="px-6 py-4 cursor-pointer flex items-center justify-between transition-colors duration-200"
+      [class.bg-blue-50]="activeSection() === 'datos'"
+      [class.bg-white]="activeSection() !== 'datos'"
+    >
+      <div class="flex items-center gap-3">
+        <svg
+          class="w-6 h-6"
+          [class.text-blue-600]="activeSection() === 'datos'"
+          [class.text-gray-500]="activeSection() !== 'datos'"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+          ></path>
+        </svg>
+        <h3
+          class="text-lg font-semibold transition-colors duration-200"
+          [class.text-blue-700]="activeSection() === 'datos'"
+          [class.text-gray-800]="activeSection() !== 'datos'"
+        >
+          Datos Personales
+        </h3>
+      </div>
+
+      <svg
+        class="w-5 h-5 transition-transform duration-300 ease-in-out"
+        [class.rotate-180]="activeSection() === 'datos'"
+        [class.text-blue-600]="activeSection() === 'datos'"
+        [class.text-gray-400]="activeSection() !== 'datos'"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M19 9l-7 7-7-7"
+        ></path>
+      </svg>
+    </div>
+
+    <div
+      class="overflow-hidden transition-all duration-500 ease-in-out"
+      [style.max-height]="activeSection() === 'datos' ? '1000px' : '0px'"
+      [style.opacity]="activeSection() === 'datos' ? '1' : '0'"
+    >
+      <div class="px-6 py-4 bg-gray-50 border-t border-gray-200">
+        <app-upsert-datos-aliado-02></app-upsert-datos-aliado-02>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contacto y Domicilio (Detalle Geográfico) -->
+  <div
+    class="border border-gray-300 rounded-lg overflow-hidden bg-white shadow-sm hover:shadow-md transition-all duration-300"
+    (mouseenter)="onMouseEnter('contacto')"
+    (mouseleave)="onMouseLeave()"
+  >
+    <div
+      class="px-6 py-4 cursor-pointer flex items-center justify-between transition-colors duration-200"
+      [class.bg-blue-50]="activeSection() === 'contacto'"
+      [class.bg-white]="activeSection() !== 'contacto'"
+    >
+      <div class="flex items-center gap-3">
+        <svg
+          class="w-6 h-6"
+          [class.text-blue-600]="activeSection() === 'contacto'"
+          [class.text-gray-500]="activeSection() !== 'contacto'"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+          ></path>
+        </svg>
+        <h3
+          class="text-lg font-semibold transition-colors duration-200"
+          [class.text-blue-700]="activeSection() === 'contacto'"
+          [class.text-gray-800]="activeSection() !== 'contacto'"
+        >
+          Contacto y Domicilio
+        </h3>
+      </div>
+
+      <svg
+        class="w-5 h-5 transition-transform duration-300 ease-in-out"
+        [class.rotate-180]="activeSection() === 'contacto'"
+        [class.text-blue-600]="activeSection() === 'contacto'"
+        [class.text-gray-400]="activeSection() !== 'contacto'"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M19 9l-7 7-7-7"
+        ></path>
+      </svg>
+    </div>
+
+    <div
+      class="overflow-hidden transition-all duration-500 ease-in-out"
+      [style.max-height]="activeSection() === 'contacto' ? '1000px' : '0px'"
+      [style.opacity]="activeSection() === 'contacto' ? '1' : '0'"
+    >
+      <div class="px-6 py-4 bg-gray-50 border-t border-gray-200">
+        <!-- Aquí va el formulario de información educativa 
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Nivel educativo</label>
+            <select
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            >
+              <option value="">Seleccione...</option>
+              <option>Secundaria</option>
+              <option>Técnico</option>
+              <option>Universitario</option>
+              <option>Postgrado</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Institución</label>
+            <input
+              type="text"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              placeholder="Nombre de la institución"
+            />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Carrera/Título</label>
+            <input
+              type="text"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              placeholder="Carrera o título obtenido"
+            />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Año de graduación</label>
+            <input
+              type="number"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              placeholder="2020"
+            />
+          </div>
+        </div>
+        -->
+
+        <app-upsert-contacto></app-upsert-contacto>
+      </div>
+    </div>
+  </div>
+
+  <!-- Actividad Laboral, Financiero y Regulatorio -->
+  <div
+    class="border border-gray-300 rounded-lg overflow-hidden bg-white shadow-sm hover:shadow-md transition-all duration-300"
+    (mouseenter)="onMouseEnter('actividad')"
+    (mouseleave)="onMouseLeave()"
+  >
+    <div
+      class="px-6 py-4 cursor-pointer flex items-center justify-between transition-colors duration-200"
+      [class.bg-blue-50]="activeSection() === 'actividad'"
+      [class.bg-white]="activeSection() !== 'actividad'"
+    >
+      <div class="flex items-center gap-3">
+        <svg
+          class="w-6 h-6"
+          [class.text-blue-600]="activeSection() === 'actividad'"
+          [class.text-gray-500]="activeSection() !== 'actividad'"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+          ></path>
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+          ></path>
+        </svg>
+        <h3
+          class="text-lg font-semibold transition-colors duration-200"
+          [class.text-blue-700]="activeSection() === 'actividad'"
+          [class.text-gray-800]="activeSection() !== 'actividad'"
+        >
+          Actividad Laboral
+        </h3>
+      </div>
+
+      <svg
+        class="w-5 h-5 transition-transform duration-300 ease-in-out"
+        [class.rotate-180]="activeSection() === 'actividad'"
+        [class.text-blue-600]="activeSection() === 'actividad'"
+        [class.text-gray-400]="activeSection() !== 'actividad'"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M19 9l-7 7-7-7"
+        ></path>
+      </svg>
+    </div>
+
+    <div
+      class="overflow-hidden transition-all duration-500 ease-in-out"
+      [style.max-height]="activeSection() === 'actividad' ? '1000px' : '0px'"
+      [style.opacity]="activeSection() === 'actividad' ? '1' : '0'"
+    >
+      <div class="px-6 py-4 bg-gray-50 border-t border-gray-200">
+        <!-- Aquí va el formulario de direcciones -->
+        <app-upsert-actividad-laboral-financiera></app-upsert-actividad-laboral-financiera>
+      </div>
+    </div>
+  </div>
+</div>

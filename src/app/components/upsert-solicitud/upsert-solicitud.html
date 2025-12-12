@@ -1,0 +1,164 @@
+<form action="#">
+  <div class="fixed top-4 right-4 space-y-2 z-50" id="toast-container"></div>
+
+  <div>
+    <h3>Datos de la Solicitud</h3>
+  </div>
+
+  <!-- FILA 1 -->
+  <div class="grid gap-4 gap-x-12 mb-4 sm:grid-cols-2 mt-4">
+    <div class="flex items-center gap-3 w-full">
+      <label class="text-sm font-medium text-gray-700" for="tipo">Tipo de Afiliación</label>
+
+      <select
+        id="tipo"
+        name="tipo"
+        class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+      >
+        <option value="">Seleccione tipo afiliación</option>
+        <option value="publica">Red de referidos</option>
+      </select>
+    </div>
+
+    <div class="mt-2">
+      <label class="py-1 select-none ms-2 text-sm font-medium text-heading">
+        Paola Citán (Solicitante)
+      </label>
+    </div>
+  </div>
+
+  <!-- FILA 2 -->
+  <div class="grid gap-4 gap-x-12 mb-4 sm:grid-cols-2">
+    <div class="flex items-center gap-3 w-full">
+      <label class="text-sm font-medium text-gray-700" for="tipo-solicitud">Tipo solicitud</label>
+
+      <select
+        id="tipo-solicitud"
+        name="tipo-solicitud"
+        class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+      >
+        <option value="">Seleccione tipo solicitud</option>
+        <option value="publica">Afiliación</option>
+        <option value="privada">Actualización de cuenta bancaria</option>
+      </select>
+    </div>
+
+    <div>
+      <label class="py-1 select-none ms-2 text-sm font-medium text-heading">
+        Librería Milenium (Entidad)</label
+      >
+    </div>
+  </div>
+
+  <!-- FILA 3: Datepicker + Estado -->
+  <div class="grid gap-4 gap-x-12 mb-4 sm:grid-cols-2">
+    <!-- Izquierda -->
+    <div class="flex items-center gap-3 w-full">
+      <label class="text-sm font-medium text-gray-900 dark:text-white" for="datepicker-autohide-j">
+        Fecha solicitud
+      </label>
+
+      <div class="relative w-full">
+        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+          <svg
+            class="w-4 h-4 text-body"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 10h16m-8-3V4M7 7V4m10 3V4M5 20h14a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Zm3-7h.01v.01H8V13Zm4 0h.01v.01H12V13Zm4 0h.01v.01H16V13Zm-8 4h.01v.01H8V17Zm4 0h.01v.01H12V17Zm4 0h.01v.01H16V17Z"
+            />
+          </svg>
+        </div>
+
+        <input
+          id="datepicker-autohide-j"
+          datepicker
+          datepicker-autohide
+          type="text"
+          class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Select date"
+        />
+      </div>
+    </div>
+
+    <!-- Derecha -->
+    <div class="flex flex-col">
+      <label class="mb-2 text-sm font-medium text-gray-900 dark:text-white">Estado Actual </label>
+      <h1 class="text-red-600">PENDIENTE DE GENERAR</h1>
+    </div>
+  </div>
+
+  <div class="grid gap-4 gap-x-12 mb-4 sm:grid-cols-2">
+    <!-- Columna izquierda -->
+    <div class="flex flex-col">
+      <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+        Observaciones
+      </label>
+
+      <input
+        type="text"
+        name="username"
+        id="username"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 h-[84px] <!-- AQUI se ajusta la altura --> dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Observaciones"
+        required
+      />
+    </div>
+
+    <!-- Columna derecha: dos botones -->
+    <div class="flex flex-col gap-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1" for="nombre">
+          Expediente
+        </label>
+
+        <input type="file" class="hidden" />
+
+        <button
+          type="button"
+          class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition-colors w-full"
+          (click)="generarDocumento()"
+        >
+          Generar Documento
+        </button>
+      </div>
+
+      <div>
+        <input type="file" #fileInput class="hidden" (change)="archivoSeleccionado($event)" />
+
+        <button
+          type="button"
+          class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition-colors w-full"
+          (click)="fileInput.click()"
+        >
+          Cargar Documento
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex justify-between gap-2">
+    <button
+      type="button"
+      class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded transition-colors"
+      onclick="document.getElementById('empresaForm').reset();"
+    >
+      Cancelar
+    </button>
+    <button
+      type="submit"
+      class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition-colors"
+    >
+      Guardar
+    </button>
+  </div>
+</form>
