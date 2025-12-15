@@ -30,10 +30,10 @@ export class UpsertValidaRegistroAliado00 implements OnInit  {
   modal3 = false;
   mostrarContenedor: boolean = false;
   mostrarIframe = false;
-  urlDocumento = '/mi-documento.pdf'; // La ruta es desde la raíz del proyecto
+  urlDocumento = '/carta-de-entendimiento-red-referidos.pdf'; // La ruta es desde la raíz del proyecto
 
   iframeVisible = false;
-  pdfUrl: string = '/mi-documento.pdf';
+  pdfUrl: string = '/carta-de-entendimiento-red-referidos.pdf';
 
   mostrarContenedorPDF = false;
 
@@ -44,7 +44,7 @@ export class UpsertValidaRegistroAliado00 implements OnInit  {
   }
 
     verDocumento() {
-  window.open('/mi-documento.pdf', '_blank');
+  window.open('/carta-de-entendimiento-red-referidos.pdf', '_blank');
 }
 
   cerrarContenedor() {

@@ -14,6 +14,6 @@ export class UpsertSolicitudConsulta implements OnInit {
 
 
   verDocumento() {
-  window.open('/mi-documento.pdf', '_blank');
+  window.open('/carta-de-entendimiento-red-referidos.pdf', '_blank');
 }
 }
