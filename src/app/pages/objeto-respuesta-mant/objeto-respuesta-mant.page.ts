@@ -57,15 +57,6 @@ export default class GestionSolicitudesPageComponent {
       telefono: '2234-5678',
       activo: true
     },
-
-        {
-      empresaId: '2',
-      nombre: 'Radio Button',
-      direccion: 'Calle Comercio 456, Zona 4',
-      nit: '98765432-1',
-      telefono: '2234-5678',
-      activo: true
-    },
         {
       empresaId: '2',
       nombre: 'Select Dropdown',
