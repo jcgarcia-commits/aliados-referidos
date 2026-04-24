@@ -68,15 +68,26 @@ export const routes: Routes = [
                                             {
          path: 'gestion-variables',
         loadComponent: () => import('./pages/gestion-variables/getion-variables.page')       
-    }
+    },
+                                               {
+  path: 'genera-documentos',
+  loadComponent: () =>
+    import('./pages/carta-entendimiento/carta-entendimiento.page'),
+    
+},
+
+{
+    path: 'prueba-docs',
+    loadComponent: () =>
+      import('./pages/prueba-docs/docs.page'),
 
 
+},
 
+{
+    path: 'carga-plantilla',
+    loadComponent: () =>
+      import('./pages/generacion-docs/genera-doc.page'),
+}
 
-
-
-
-
-
-  
 ];

@@ -1,0 +1,163 @@
+<div class="p-6 bg-gray-100 min-h-screen">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <!-- IZQUIERDA -->
+    <div class="md:col-span-1 space-y-6">
+      <!-- SELECTS -->
+      <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+        <div class="grid gap-4">
+          <div class="flex flex-col gap-1.5">
+            <label class="text-sm font-medium text-gray-700"> Tipo de Afiliación </label>
+            <select
+              [(ngModel)]="tipoAfiliacion"
+              class="w-full p-2.5 bg-white border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500"
+            >
+              <option>Red de referidos</option>
+            </select>
+          </div>
+
+          <div class="flex flex-col gap-1.5">
+            <label class="text-sm font-medium text-gray-700"> Tipo de Solicitud </label>
+            <select
+              [(ngModel)]="tipoSolicitud"
+              class="w-full p-2.5 bg-white border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500"
+            >
+              <option>Registro de Afiliación</option>
+              <option>Actualización cuenta bancaria</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOTONES 
+      <button
+        *ngIf="tipoAfiliacion && tipoSolicitud"
+        (click)="generarVista()"
+        class="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg shadow text-sm"
+      >
+        Generar
+      </button>
+
+     
+      <button
+        (click)="descargarDOCX()"
+        [disabled]="!documentoGenerado"
+        class="px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white rounded-lg shadow text-sm"
+      >
+        Descargar DOCX
+      </button>
+
+      <button
+        (click)="descargarPDF()"
+        [disabled]="!documentoGenerado"
+        class="px-4 py-2 bg-red-600 hover:bg-red-700 disabled:bg-gray-400 text-white rounded-lg shadow text-sm"
+      >
+        Descargar PDF
+      </button>
+
+      -->
+
+      <div class="flex flex-col gap-3">
+        <button
+          *ngIf="tipoAfiliacion && tipoSolicitud"
+          (click)="generarVista()"
+          class="w-full px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg shadow text-sm"
+        >
+          Generar
+        </button>
+
+        <button
+          (click)="descargarPDF()"
+          [disabled]="!documentoGenerado"
+          class="w-full px-4 py-2 bg-red-600 hover:bg-red-700 disabled:bg-gray-400 text-white rounded-lg shadow text-sm"
+        >
+          Descargar PDF
+        </button>
+      </div>
+    </div>
+
+    <!-- DERECHA -->
+    <div class="md:col-span-2">
+      <!-- VISOR CON SCROLL -->
+      <div class="h-[calc(100vh-80px)] overflow-y-auto pr-2">
+        <div class="flex flex-col items-center gap-6">
+          <!-- PAGINAS -->
+          <div
+            *ngFor="let pagina of paginas"
+            #documentoRender
+            class="bg-white w-[794px] h-[1123px] shadow-xl border border-gray-300 relative overflow-hidden flex flex-col"
+            style="
+              background-image: url('/fondo-carta-entendimiento.png');
+              background-size: 100% 100%;
+              background-repeat: no-repeat;
+              background-position: center;
+            "
+          >
+            <div
+              class="relative z-10 p-[3cm] pt-[5.5cm] pb-[4cm] flex-1 flex flex-col justify-between"
+            >
+              <!-- CONTENIDO -->
+              <ng-container *ngFor="let bloque of pagina">
+                <h2
+                  *ngIf="bloque.tipo === 'titulo'"
+                  class="text-xl font-bold text-center uppercase tracking-tight leading-none mb-0"
+                >
+                  {{ bloque.texto }}
+                </h2>
+
+                <h2
+                  *ngIf="bloque.tipo === 'subtitulo'"
+                  class="text-xl font-bold text-center uppercase tracking-tight leading-tight mb-8"
+                >
+                  {{ bloque.texto }}
+                </h2>
+
+                <p
+                  *ngIf="bloque.tipo === 'parrafo'"
+                  class="text-justify leading-relaxed text-[15px] mb-4"
+                >
+                  <ng-container *ngFor="let parte of bloque.partes">
+                    <span [class.font-bold]="parte.tipo === 'campo'">
+                      {{ parte.valor }}
+                    </span>
+                  </ng-container>
+                </p>
+
+                <div *ngIf="bloque.tipo === 'lista'" class="mb-6">
+                  <ul
+                    class="ml-10 space-y-1 text-[15px]"
+                    [ngClass]="{
+                      'list-decimal': bloque.estilo === 'numeros',
+                      'list-disc': bloque.estilo === 'vinetas',
+                    }"
+                  >
+                    <li *ngFor="let item of bloque.items" class="text-justify">
+                      {{ item }}
+                    </li>
+                  </ul>
+                </div>
+                <!--
+                <div *ngIf="bloque.tipo === 'firmas'" class="grid grid-cols-2 gap-10 mt-10 w-full">
+                  <div *ngFor="let firmante of bloque.firmantes" class="flex flex-col">
+                    <p class="font-bold text-[15px] mb-16 uppercase">{{ firmante.titulo }}</p>
+
+                    <div class="flex flex-col gap-1">
+                      <div class="w-full border-t border-black mb-2"></div>
+
+                      <div *ngFor="let linea of firmante.lineas" class="text-[13px]">
+                        <ng-container *ngFor="let parte of linea">
+                          <span [class.font-bold]="parte.tipo === 'campo'">
+                            {{ parte.valor }}
+                          </span>
+                        </ng-container>
+                      </div>
+                    </div>
+                  </div>
+                </div>  -->
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

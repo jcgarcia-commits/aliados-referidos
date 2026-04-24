@@ -1,11 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
+/* ================================
+   1. FUENTES
+================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+
+/* ================================
+   2. TAILWIND + PLUGINS
+================================ */
 @import "tailwindcss";
+
+/* Flowbite */
 @import "flowbite/src/themes/default";
 @plugin "flowbite/plugin";
 @source "../node_modules/flowbite";
 @source "../node_modules/flowbite-datepicker";
 @source "../node_modules/flowbite-toggle";
+@plugin "@tailwindcss/typography";
 
+/* ================================
+   3. ANIMACIONES
+================================ */
 @keyframes slide-in {
   from { opacity: 0; transform: translateX(50px); }
   to   { opacity: 1; transform: translateX(0); }
@@ -13,4 +27,30 @@
 
 .animate-slide-in {
   animation: slide-in 0.3s ease-out;
+}
+
+
+/* Estilos para el contenido inyectado de Mammoth */
+.wysiwyg-document p {
+  text-align: justify !important;
+  line-height: 1.7 !important;
+  font-size: 15px !important;
+  margin-bottom: 1.2rem !important;
+  color: #334155 !important;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.wysiwyg-document h1, .wysiwyg-document h2 {
+  text-align: center !important;
+  text-transform: uppercase !important;
+  font-weight: 800 !important;
+  margin-bottom: 2rem !important;
+  color: #0f172a !important;
+}
+
+.wysiwyg-document .text-center { text-align: center !important; }
+
+/* Para que las variables se vean resaltadas en la hoja */
+.wysiwyg-document b {
+    font-weight: 700;
 }
