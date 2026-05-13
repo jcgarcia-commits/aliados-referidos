@@ -1,12 +1,4 @@
-/* ================================
-   1. FUENTES
-================================ */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
-
-
-/* ================================
-   2. TAILWIND + PLUGINS
-================================ */
 @import "tailwindcss";
 
 /* Flowbite */
@@ -17,20 +9,13 @@
 @source "../node_modules/flowbite-toggle";
 @plugin "@tailwindcss/typography";
 
-/* ================================
-   3. ANIMACIONES
-================================ */
 @keyframes slide-in {
   from { opacity: 0; transform: translateX(50px); }
   to   { opacity: 1; transform: translateX(0); }
 }
 
-.animate-slide-in {
-  animation: slide-in 0.3s ease-out;
-}
+.animate-slide-in { animation: slide-in 0.3s ease-out; }
 
-
-/* Estilos para el contenido inyectado de Mammoth */
 .wysiwyg-document p {
   text-align: justify !important;
   line-height: 1.7 !important;
@@ -49,8 +34,8 @@
 }
 
 .wysiwyg-document .text-center { text-align: center !important; }
+.wysiwyg-document b { font-weight: 700; }
 
-/* Para que las variables se vean resaltadas en la hoja */
-.wysiwyg-document b {
-    font-weight: 700;
-}
+.custom-scrollbar::-webkit-scrollbar { width: 6px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }

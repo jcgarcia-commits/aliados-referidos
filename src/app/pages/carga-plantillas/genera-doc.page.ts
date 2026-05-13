@@ -16,8 +16,18 @@ import { Previewer } from 'pagedjs';
     `
     .animate-slide-in { animation: slideIn 0.5s ease-out forwards; }
     .animate-fade-out { animation: fadeOut 0.5s ease-in forwards; }
+    
+    /* Animación de sacudida para inputs vacíos */
+    .animate-shake { animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both; }
+
     @keyframes slideIn { from { opacity: 0; transform: translateX(100%); } to { opacity: 1; transform: translateX(0); } }
     @keyframes fadeOut { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(100%); } }
+    @keyframes shake {
+      10%, 90% { transform: translate3d(-1px, 0, 0); }
+      20%, 80% { transform: translate3d(2px, 0, 0); }
+      30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+      40%, 60% { transform: translate3d(4px, 0, 0); }
+    }
 
     :host { display: block; height: 100vh; width: 100vw; overflow: hidden !important; }
 
@@ -82,6 +92,10 @@ export default class GeneraDocsPageComponent {
   public archivoOriginal: ArrayBuffer | null = null;
   public variables: string[] = [];
   public formValues: { [key: string]: string } = {};
+  
+  // Objeto para rastrear errores de validación
+  public formErrors: { [key: string]: boolean } = {};
+
   public isLoading: boolean = false;
   public showToast: boolean = false;
   public isClosingToast: boolean = false;
@@ -94,6 +108,11 @@ export default class GeneraDocsPageComponent {
     const buffer = await file.arrayBuffer();
     this.archivoOriginal = buffer;
     this.isLoading = true;
+    
+    // Resetear valores y errores al cargar nuevo archivo
+    this.formValues = {};
+    this.formErrors = {};
+
     try {
       const container = this.previewContainer.nativeElement;
       container.innerHTML = '';
@@ -110,11 +129,14 @@ export default class GeneraDocsPageComponent {
       await paged.preview(tempDiv.innerHTML, [styleSheet], container);
       setTimeout(() => this.eliminarPaginaExtra(container), 500);
       const zip = new PizZip(buffer);
-      const doc = new Docxtemplater(zip, { delimiters: { start: '${', end: '}' } });
-      const matches = doc.getFullText().match(/\${(.*?)}/g);
+      const doc = new Docxtemplater(zip, { delimiters: { start: '{', end: '}' } });
+      const matches = doc.getFullText().match(/{(.*?)}/g);
       if (matches) {
-        this.variables = [...new Set(matches.map(m => m.replace(/\${|}/g, '')))];
-        this.variables.forEach(v => { if (!this.formValues[v]) this.formValues[v] = ''; });
+        this.variables = [...new Set(matches.map(m => m.replace(/{|}/g, '')))];
+        this.variables.forEach(v => { 
+          if (!this.formValues[v]) this.formValues[v] = ''; 
+          this.formErrors[v] = false;
+        });
       }
       this.isLoading = false;
     } catch (err) {
@@ -126,10 +148,10 @@ export default class GeneraDocsPageComponent {
   private unificarYResaltarTodo(tempContainer: HTMLElement): void {
     const blocks = tempContainer.querySelectorAll('p, td, li, span');
     blocks.forEach((block) => {
-      if (block.textContent && block.textContent.includes('$')) {
+      if (block.textContent && block.textContent.includes('{')) {
         let html = block.innerHTML;
         html = html.replace(/<span[^>]*><\/span>/g, '');
-        const regexVariables = /\${(.*?)}/g;
+        const regexVariables = /{(.*?)}/g;
         html = html.replace(regexVariables, (match) => {
           const cleanMatch = match.replace(/<\/?[^>]+(>|$)/g, ""); 
           return `<span class="highlight-var">${cleanMatch}</span>`;
@@ -162,10 +184,8 @@ export default class GeneraDocsPageComponent {
     pageContents.forEach((page: any) => {
       const pageClone = (page as Element).cloneNode(true) as HTMLElement;
       
-      // 1. ELIMINAR BASURA: Imágenes y Estilos inyectados por las librerías
       pageClone.querySelectorAll('img, style, script').forEach(el => el.remove());
 
-      // 2. LIMPIEZA DE ATRIBUTOS TÉCNICOS: Remover data-attributes de pagedjs
       const allElements = pageClone.querySelectorAll('*');
       allElements.forEach(el => {
         const attrs = el.getAttributeNames();
@@ -176,7 +196,6 @@ export default class GeneraDocsPageComponent {
         });
       });
 
-      // 3. NORMALIZAR CONTENIDO: Mantener solo el HTML limpio de la página
       htmlFinal += `<div class="page-sheet"><div class="content-area">${pageClone.innerHTML}</div></div>`;
     });
 
@@ -187,16 +206,17 @@ export default class GeneraDocsPageComponent {
         <meta charset="UTF-8">
         <style>
           @page { size: 215.9mm 279.4mm; margin: 0; }
-          body { background: #f0f2f5; margin: 0; padding: 40px 0; display: flex; flex-direction: column; align-items: center; font-family: 'Arial', sans-serif; }
-          .page-sheet { background: white; width: 215.9mm; min-height: 279.4mm; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); box-sizing: border-box; page-break-after: always; }
+          body { background: #f0f2f5; margin: 0; padding: 40px 0; display: flex; flex-direction: column; align-items: center; font-family: 'Arial', sans-serif; color: #334155; }
+          .page-sheet { background: white; width: 215.9mm; min-height: 279.4mm; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); box-sizing: border-box; page-break-after: always; position: relative; }
           .content-area { padding: 25.4mm; width: 100%; height: 100%; box-sizing: border-box; overflow: hidden; }
-          table { border-collapse: collapse; width: 100%; border: 1px solid black; }
-          td { border: 1px solid black; padding: 5px; vertical-align: top; }
-          p { margin: 0; padding-bottom: 8pt; line-height: 1.3; text-align: justify; }
+          table { border-collapse: collapse; width: 100%; border: 1px solid #000; margin-bottom: 1rem; }
+          td, th { border: 1px solid #000; padding: 8px; vertical-align: top; font-size: 11pt; }
+          p { margin: 0 0 10pt 0; line-height: 1.5; text-align: justify; font-size: 11pt; }
           span { white-space: pre-wrap; }
+          h1, h2, h3 { margin-top: 0; color: #1e293b; }
           @media print {
             body { background: none; padding: 0; }
-            .page-sheet { margin: 0; box-shadow: none; }
+            .page-sheet { margin: 0; box-shadow: none; border: none; }
           }
         </style>
       </head>
@@ -207,7 +227,7 @@ export default class GeneraDocsPageComponent {
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `carta-de-entendimiento.html`;
+    a.download = `documento-renderizado.html`;
     a.click();
     window.URL.revokeObjectURL(url);
     this.mostrarToast('Exportado con éxito', 'success');
@@ -215,11 +235,23 @@ export default class GeneraDocsPageComponent {
 
   public async guardarPlantilla(): Promise<void> {
     if (!this.archivoOriginal) return;
-    const camposIncompletos = this.variables.some(v => !this.formValues[v] || this.formValues[v].trim() === '');
-    if (camposIncompletos) {
+
+    // Identificar qué campos están vacíos
+    let tieneErrores = false;
+    this.variables.forEach(v => {
+      if (!this.formValues[v] || this.formValues[v].trim() === '') {
+        this.formErrors[v] = true;
+        tieneErrores = true;
+      } else {
+        this.formErrors[v] = false;
+      }
+    });
+
+    if (tieneErrores) {
       this.mostrarToast('Todos los campos son obligatorios', 'error');
       return;
     }
+
     this.isLoading = true;
     setTimeout(() => {
       this.isLoading = false;
