@@ -118,14 +118,14 @@ export default class GestionCartasPageComponent {
         htmlSustituido = htmlSustituido.split(token).join(this.valores[campo] || token);
       }
 
-      // AGREGADO: Insertar un espaciador al inicio para bajar el contenido
+    
       const htmlConEspacio = `<div style="height: 20mm; width: 100%;"></div>` + htmlSustituido;
 
       const tempDiv = document.createElement('div');
       tempDiv.innerHTML = htmlConEspacio;
 
       tempDiv.querySelectorAll('*').forEach((el: any) => {
-        // AGREGADO: Forzar posición relativa y limpiar "top" para evitar superposiciones
+      
         el.style.position = 'relative'; 
         el.style.top = 'auto';
         el.style.width = 'auto'; 

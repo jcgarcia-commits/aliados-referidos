@@ -17,7 +17,7 @@ import { Previewer } from 'pagedjs';
     .animate-slide-in { animation: slideIn 0.5s ease-out forwards; }
     .animate-fade-out { animation: fadeOut 0.5s ease-in forwards; }
     
-    /* Animación de sacudida para inputs vacíos */
+
     .animate-shake { animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both; }
 
     @keyframes slideIn { from { opacity: 0; transform: translateX(100%); } to { opacity: 1; transform: translateX(0); } }

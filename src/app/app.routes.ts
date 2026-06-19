@@ -80,6 +80,13 @@ export const routes: Routes = [
     path: 'genera-carta',
     loadComponent: () =>
       import('./pages/genera-cartas/carta-entendimiento.page'),
+},
+
+
+{
+    path: 'genera-contratos',
+    loadComponent: () =>
+      import('./pages/genera-contratos/genera-contratos.page'),
 }
 
 ];
