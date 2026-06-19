@@ -1,0 +1,190 @@
+<form action="#">
+  <div class="fixed top-4 right-4 space-y-2 z-50" id="toast-container"></div>
+
+  <!-- FILA 1 -->
+  <div class="mt-0.5 grid gap-2 mb-2 sm:grid-cols-3">
+    <div class="flex flex-col">
+      <label for="username" class="block text-sm font-medium text-gray-900 mb-1">
+        Primer Nombre <span class="text-red-600">*</span>
+      </label>
+      <input
+        type="text"
+        name="username"
+        id="username"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5 h-12"
+        placeholder="Primer nombre"
+      />
+    </div>
+
+    <div class="flex flex-col">
+      <label for="email" class="block text-sm font-medium text-gray-900 mb-1">
+        Segundo Nombre
+      </label>
+      <input
+        type="text"
+        name="email"
+        id="email"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5 h-12"
+        placeholder="Segundo nombre"
+      />
+    </div>
+
+    <div class="flex flex-col">
+      <label for="tercer" class="block text-sm font-medium text-gray-900 mb-1">
+        Tercer Nombre
+      </label>
+      <input
+        type="text"
+        id="tercer"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5 h-12"
+        placeholder="Tercer Nombre"
+      />
+    </div>
+  </div>
+
+  <!-- FILA 2 -->
+  <div class="mt-0.5 grid gap-2 mb-2 sm:grid-cols-3">
+    <div class="flex flex-col">
+      <label class="block text-sm font-medium text-gray-900 mb-1">
+        Primer Apellido <span class="text-red-600">*</span>
+      </label>
+      <input
+        type="text"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5 h-12"
+        placeholder="Primer apellido"
+      />
+    </div>
+
+    <div class="flex flex-col">
+      <label class="block text-sm font-medium text-gray-900 mb-1">
+        Segundo Apellido <span class="text-red-600">*</span>
+      </label>
+      <input
+        type="text"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5 h-12"
+        placeholder="Segundo apellido"
+      />
+    </div>
+
+    <div class="flex flex-col">
+      <label class="block text-sm font-medium text-gray-900 mb-1">
+        Fec Nacimiento <span class="text-red-600">*</span>
+      </label>
+      <div class="relative w-full">
+        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+          <svg
+            class="w-4 h-4 text-gray-900"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 10h16m-8-3V4M7 7V4m10 3V4M5 20h14a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Zm3-7h.01v.01H8V13Zm4 0h.01v.01H12V13Zm4 0h.01v.01H16V13Zm-8 4h.01v.01H8V17Zm4 0h.01v.01H12V17Zm4 0h.01v.01H16V17Z"
+            />
+          </svg>
+        </div>
+        <input
+          id="datepicker-autohide-73"
+          datepicker
+          datepicker-autohide
+          type="text"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg pl-10 pr-3 h-12 w-full"
+          placeholder="Select date"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- FILA 3 -->
+  <div class="mt-2 grid gap-2 mb-2 sm:grid-cols-3">
+    <div class="flex flex-col">
+      <label class="block text-sm font-medium text-gray-900 mb-1">
+        Sexo <span class="text-red-600">*</span>
+      </label>
+      <select
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5 h-12 w-full"
+      >
+        <option value="">Seleccione el sexo</option>
+        <option>Masculino</option>
+        <option>Femenino</option>
+      </select>
+    </div>
+
+    <div class="flex flex-col">
+      <label class="block text-sm font-medium text-gray-900 mb-1">
+        Estado Civil <span class="text-red-600">*</span>
+      </label>
+      <select
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5 h-12 w-full"
+      >
+        <option value="">Estado Civil</option>
+        <option>Soltero/a</option>
+        <option>Casado/a</option>
+        <option>Unión de hecho</option>
+        <option>Viudo/a</option>
+        <option>Divorciado/a</option>
+        <option>Otros</option>
+      </select>
+    </div>
+
+    <div class="flex flex-col">
+      <label class="block text-sm font-medium text-gray-900 mb-1">
+        Nacionalidad <span class="text-red-600">*</span>
+      </label>
+      <select
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5 h-12 w-full"
+      >
+        <option value="">Seleccione</option>
+        <option>Guatemala</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- FILA 4 -->
+  <div class="mt-0.5 grid gap-2 mb-2 sm:grid-cols-3">
+    <div class="flex flex-col">
+      <label class="block text-sm font-medium text-gray-900 mb-1">
+        Etnia <span class="text-red-600">*</span>
+      </label>
+      <select
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5 h-12 w-full"
+      >
+        <option value="">Seleccione Etnia</option>
+        <option>Indígena</option>
+        <option>Español</option>
+        <option>Queqchí</option>
+        <option>Pocomchí</option>
+        <option>Kaqchíquel</option>
+      </select>
+    </div>
+
+    <div class="flex flex-col">
+      <label class="block text-sm font-medium text-gray-900 mb-1"
+        >Sabe Leer<span class="text-red-600">*</span></label
+      >
+      <select
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5 h-12 w-full"
+      >
+        <option value="si">Sí</option>
+        <option value="no">No</option>
+      </select>
+    </div>
+
+    <div class="flex flex-col">
+      <label class="block text-sm font-medium text-gray-900 mb-1"
+        >Sabe Escribir<span class="text-red-600">*</span></label
+      >
+      <select
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5 h-12 w-full"
+      >
+        <option value="si">Sí</option>
+        <option value="no">No</option>
+      </select>
+    </div>
+  </div>
+</form>
